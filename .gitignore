@@ -255,3 +255,12 @@ video/target/classes/start.bat
 video/target/classes/stop.bat
 video/target/test-classes/com/nvr/video/VideoApplicationTests.class
 video/video.iml
+video/target/bme-nvr.jar
+video/target/bme-nvr.jar.original
+video/target/maven-archiver/pom.properties
+video/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+video/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+video/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+video/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+video/target/surefire-reports/com.nvr.video.VideoApplicationTests.txt
+video/target/surefire-reports/TEST-com.nvr.video.VideoApplicationTests.xml

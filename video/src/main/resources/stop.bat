@@ -1,3 +1,13 @@
 @echo off
-taskkill -f -t -im javaw.exe
-exit
+setlocal enabledelayedexpansion
+#set /p port=请输入端口号：
+for /f "tokens=1-5" %%a in ('netstat -ano ^| find ":8090"') do (
+    if "%%e%" == "" (
+        set pid=%%d
+    ) else (
+        set pid=%%e
+    )
+    echo !pid!
+    taskkill /f /pid !pid!
+)
+#pause
