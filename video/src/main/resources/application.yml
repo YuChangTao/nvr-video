@@ -1,0 +1,12 @@
+server:
+  servlet:
+    context-path: /nvr
+  port: 8090
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF
+      suffix: .jsp
+nvr:
+  config:
+    classify: 高炉|Channel1,Channel2,Channel3||烧结|Channel4,Channel5||球团|Channel6,Channel7
