@@ -59,7 +59,7 @@
     <div class="layer_right_bottom"></div>-->
     <div class="main_cont_layer">
         <h1 class="title_text">视频详情</h1>
-        <div class="model_box map_pollution_details" style="height: 470px;">
+        <div class="model_box map_pollution_details" style="height: 550px;">
             <div class="left_top"></div>
             <div class="right_top"></div>
             <div class="left_bottom"></div>

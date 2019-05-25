@@ -238,7 +238,7 @@ function initLiEvent(val) {
             type: 1,
             //                   title:['视频详情'],
             title: false,
-            area: ['95%', '70%'], //宽高width:;
+            area: ['60%', '70%'], //宽高width:;
             content: $('.layer_cont_type'), //DOM对象
             scrollbar: false, //是否允许浏览器出现滚动条
             shadeClose: true,
