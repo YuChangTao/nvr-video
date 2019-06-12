@@ -65,13 +65,14 @@
             <div class="left_bottom"></div>
             <div class="right_bottom"></div>
             <div id="videoBox" class="videoBox" style="width: 100%; height: 100%;">
-                <video id="my-video" style="width: 100%; height: 100%;" class="video-js vjs-default-skin vjs-big-play-centered">
+                <%--<video id="my-video" style="width: 100%; height: 100%;" class="video-js vjs-default-skin vjs-big-play-centered">
                     <source src="" type="rtmp/flv"/>
                     <!--<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
                         <param name="movie" value="myvideo.swf" />
                         <param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
                     </object>-->
-                </video>
+                </video>--%>
+                <easy-player id="my-video" live="true" aspect="300:100" show-custom-button="true"></easy-player>
             </div>
         </div>
     </div>
@@ -79,8 +80,9 @@
 </body>
 <script src="../static/video/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../static/layui/layui.js" type="text/javascript"></script>
-<script type="text/javascript" src="../static/video/video.min.js"></script>
-<script type="text/javascript" src="../static/video/videojs-flash.min.js"></script>
+<%--<script type="text/javascript" src="../static/video/video.min.js"></script>--%>
+<%--<script type="text/javascript" src="../static/video/videojs-flash.min.js"></script>--%>
+<script type="text/javascript" src="../static/video/easy-player-element.min.js"></script>
 <script src="../static/page/js/index.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
     layui.use(['form', 'layedit', 'laydate'], function() {

@@ -32,7 +32,7 @@ var timer;
 //配置数据
 var config;
 
-videojs.options.flash.swf = '../static/video/video-js.swf';
+// videojs.options.flash.swf = '../static/video/video-js.swf';
 /**
  * 登录获取token
  */
@@ -152,7 +152,7 @@ function getChannelByType(type) {
 function getChannelStream() {
     $.ajaxSettings.async = false;//设置为同步
     var getUrl = baseUrl + '/api/v1/getchannelstream';
-    $.get(getUrl, {"channel": channelId}, function (res) {
+    $.get(getUrl, {"channel": channelId,"protocol":"FLV"}, function (res) {
         if (res.EasyDarwin.Header.ErrorNum == 200) {
             rtmpUrl = res.EasyDarwin.Body.URL;
         }
@@ -221,9 +221,8 @@ function initLiEvent(val) {
                 fullscreenToggle : true
             }
         };
-        // rtmpUrl = "rtmp://demo.easynvr.com:10935/hls/stream_1?token=4857d078390a168c80075726ce3494a2";
         //加载播放rtmp视频流
-        var videoStr = '<video id="my-video" style="width: 100%; height: 100%;" class="video-js vjs-default-skin vjs-big-play-centered"' +
+       /* var videoStr = '<video id="my-video" style="width: 100%; height: 100%;" class="video-js vjs-default-skin vjs-big-play-centered"' +
             '                    poster="'+baseUrl+channel.SnapURL+'">' +
             '                    <source src="'+rtmpUrl+'" type="rtmp/flv"/>' +
             '            </video>'
@@ -231,7 +230,8 @@ function initLiEvent(val) {
         var player = videojs("my-video", options);
         player.src({"src":rtmpUrl,"type":"rtmp/flv"});
         player.load();
-        player.play();
+        player.play();*/
+       var videoStr = '<easy-player id="my-video" live="true" aspect="300:100" show-custom-button="true" video-url="'+baseUrl+rtmpUrl+'"></easy-player>'
         //定时刷新心跳
         timer = window.setInterval(refreshCount, 5000);
         form_box = layer.open({
@@ -247,7 +247,7 @@ function initLiEvent(val) {
                 // 停止定时刷新心跳
                 window.clearInterval(timer);
                 //销毁实例
-                player.dispose();
+                // player.dispose();
             }
             //maxmin:true//放大窗口按钮
 
@@ -262,7 +262,7 @@ function initLiEvent(val) {
  */
 function refreshCount() {
     var getUrl = baseUrl + "/api/v1/touchchannelstream";
-    $.get(getUrl, {channel: channelId, "line": "local", protocol: "rtmp"}, function (res) {
+    $.get(getUrl, {channel: channelId, protocol: "FLV","_":new Date().getTime()}, function (res) {
 
     })
 }
