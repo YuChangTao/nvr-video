@@ -66,13 +66,13 @@
             <div class="right_bottom"></div>
             <div id="videoBox" class="videoBox" style="width: 100%; height: 100%;">
                 <%--<video id="my-video" style="width: 100%; height: 100%;" class="video-js vjs-default-skin vjs-big-play-centered">
-                    <source src="" type="rtmp/flv"/>
-                    <!--<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
-                        <param name="movie" value="myvideo.swf" />
-                        <param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
-                    </object>-->
-                </video>--%>
-                <easy-player id="my-video" live="true" aspect="300:100" show-custom-button="true"></easy-player>
+                <source src="" type="rtmp/flv"/>
+                <!--<object width="" height="" type="application/x-shockwave-flash" data="myvideo.swf">
+                    <param name="movie" value="myvideo.swf" />
+                    <param name="flashvars" value="autostart=true&amp;file=myvideo.swf" />
+                </object>-->
+            </video>--%>
+                <easy-player id="my-video" live="true" aspect="187:100" show-custom-button="true"></easy-player>
             </div>
         </div>
     </div>

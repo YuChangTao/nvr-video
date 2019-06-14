@@ -20,18 +20,21 @@ $(document).ready(function(){
 })
 
 
-// var baseUrl = "http://localhost:10800";
-var baseUrl = "http://192.168.1.3:10800";
+var baseUrl = "http://demo.easynvr.com:10800";
+// var baseUrl = "http://192.168.1.3:10800";
 var data = [];
 //通道id
-var channelId;
+var channelIdArr=[];
 //通道rtmp视频流
 var rtmpUrl;
 //定时器
-var timer;
+var timerArr=[];
 //配置数据
 var config;
-
+//延时触发单双击
+var clickTimeSingle,clickTimeDouble;
+//li索引
+//var index;
 // videojs.options.flash.swf = '../static/video/video-js.swf';
 /**
  * 登录获取token
@@ -149,10 +152,10 @@ function getChannelByType(type) {
 /**
  * 根据通道获取直播流地址
  */
-function getChannelStream() {
+function getChannelStream(index) {
     $.ajaxSettings.async = false;//设置为同步
     var getUrl = baseUrl + '/api/v1/getchannelstream';
-    $.get(getUrl, {"channel": channelId,"protocol":"FLV"}, function (res) {
+    $.get(getUrl, {"channel": channelIdArr[index],"protocol":"FLV"}, function (res) {
         if (res.EasyDarwin.Header.ErrorNum == 200) {
             rtmpUrl = res.EasyDarwin.Body.URL;
         }
@@ -201,68 +204,110 @@ function createView(list) {
  */
 function initLiEvent(val) {
     //弹出对话框
-    $(document).on("click",'.violation_body_li',function() {
-        //获取通道流
-        var index = $(this).index();
-        var channel = data[index];
-        console.log(data[index]);
-        channelId = channel.Channel;
-        getChannelStream();
-        $.ajaxSettings.async = true;
-
-        //初始化数据/ 弹窗的echarts
-        var options = {
-            loop : true,
-            autoplay:true,
-            poster:"",
-            preload:'auto',
-            controls : true,
-            controlBar : {
-                fullscreenToggle : true
-            }
-        };
-        //加载播放rtmp视频流
-       /* var videoStr = '<video id="my-video" style="width: 100%; height: 100%;" class="video-js vjs-default-skin vjs-big-play-centered"' +
-            '                    poster="'+baseUrl+channel.SnapURL+'">' +
-            '                    <source src="'+rtmpUrl+'" type="rtmp/flv"/>' +
-            '            </video>'
-        $("#videoBox").html(videoStr);
-        var player = videojs("my-video", options);
-        player.src({"src":rtmpUrl,"type":"rtmp/flv"});
-        player.load();
-        player.play();*/
-       var videoStr = '<easy-player id="my-video" live="true" aspect="300:100" show-custom-button="true" video-url="'+baseUrl+rtmpUrl+'"></easy-player>'
-        //定时刷新心跳
-        timer = window.setInterval(refreshCount, 5000);
-        form_box = layer.open({
-            type: 1,
-            //                   title:['视频详情'],
-            title: false,
-            area: ['60%', '70%'], //宽高width:;
-            content: $('.layer_cont_type'), //DOM对象
-            scrollbar: false, //是否允许浏览器出现滚动条
-            shadeClose: true,
-            end:function(){
-                console.log("close");
-                // 停止定时刷新心跳
-                window.clearInterval(timer);
-                //销毁实例
-                // player.dispose();
-            }
-            //maxmin:true//放大窗口按钮
-
-        });
+    $(document).on("dblclick",'.violation_body_li',function() {
+    	let _this=this;
+    	clearTimeout(clickTimeSingle);
+    	clearTimeout(clickTimeDouble);
+    	clickTimeDouble =setTimeout(function(){
+	    	//获取通道流
+	        var index = $(_this).index();
+	        var channel = data[index];
+	        console.log(data[index]);
+	        channelIdArr[index] = channel.Channel;
+	        getChannelStream(index);
+	        $.ajaxSettings.async = true;
+			
+	        var videoStr = '<easy-player id="my-video" live="true" aspect="187:100" show-custom-button="true" video-url="'+baseUrl+rtmpUrl+'"></easy-player>'
+	        $("#videoBox").html(videoStr);
+	        $(".videoBox").find(".vjs-control-bar").hide();//隐藏底部工具
+	        //定时刷新心跳
+	        let refreshCountFun=function(){
+		    		var getUrl = baseUrl + "/api/v1/touchchannelstream";
+    				$.get(getUrl, {channel: channelIdArr[index], protocol: "FLV","_":new Date().getTime()}, function (res) {
+					})
+    		};
+	        timerArr[index] = window.setInterval(refreshCountFun, 5000);
+	        form_box = layer.open({
+	            type: 1,
+	            //                   title:['视频详情'],
+	            title: false,
+	            area: ['60%', '70%'], //宽高width:;
+	            content: $('.layer_cont_type'), //DOM对象
+	            scrollbar: false, //是否允许浏览器出现滚动条
+	            shadeClose: true,
+	            end:function(){
+	                console.log("close");
+	                // 停止定时刷新心跳
+	                window.clearInterval(timerArr[index]);
+	                //销毁实例
+	                // player.dispose();
+	            }
+	            //maxmin:true//放大窗口按钮
+	
+	        });
+    	},250)
+        
         //详情页面数据
     });
+    //所有video 单击事件
+    $(document).on("click","video",function(){
+    	changeVideo(this);
+    });
+    //li单击事件
+    $(document).on("click",".violation_body_li",function(){
+    	let _this=this;
+    	var index = $(_this).index();
+    	if(!$(this).find("video").length){
+	    	clearTimeout(clickTimeSingle);
+	    	clickTimeSingle = setTimeout(function(){
+		    	//获取通道流
+//		        index = $(_this).index();
+		        var channel = data[index];
+		        console.log(index);
+		        channelIdArr[index] = channel.Channel;
+		    	getChannelStream(index);
+		        $.ajaxSettings.async = true;
+		    	var videoStr = '<easy-player id="my-video" live="true" aspect="150:100" show-custom-button="true" video-url="'+baseUrl+rtmpUrl+'"></easy-player><div class="video_bg"></div>'
+		    	$(_this).find("img,.bg_play_img").hide();
+		    	$(_this).find(".img_box_flow").append(videoStr);
+		    	$(_this).find(".vjs-control-bar").hide();//隐藏底部工具
+		    	//定时刷新心跳
+		    	console.log(index)
+		    	let refreshCountFun=function(){
+		    		var getUrl = baseUrl + "/api/v1/touchchannelstream";
+    				$.get(getUrl, {channel: channelIdArr[index], protocol: "FLV","_":new Date().getTime()}, function (res) {
+					})
+    			};	
+	        	timerArr[index] = window.setInterval(refreshCountFun, 5000);
+	    	},250)
+    	}else{
+    		$(_this).find("img,.bg_play_img").show();
+    		$(_this).find("easy-player").remove();
+            $(_this).find("video").remove();
+            window.clearInterval(timerArr[index]);
+    	}
+    	
+    	
+    })
+    
 }
 
 
 /**
  * 定时刷新心跳
  */
-function refreshCount() {
+function refreshCount(index) {
+//	alert('123')
     var getUrl = baseUrl + "/api/v1/touchchannelstream";
-    $.get(getUrl, {channel: channelId, protocol: "FLV","_":new Date().getTime()}, function (res) {
-
+    $.get(getUrl, {channel: channelIdArr[index], protocol: "FLV","_":new Date().getTime()}, function (res) {
+		
     })
+}
+//
+function changeVideo(_video){
+    if( _video.paused ){
+        _video.play();
+    }else{
+        _video.pause();
+    }
 }

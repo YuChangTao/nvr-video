@@ -1009,7 +1009,7 @@ body::-webkit-scrollbar-track { /*滚动条里面轨道*/
 	padding:10px;
 	box-sizing: border-box;
 	margin-right:20px;
-	margin-bottom:20px;
+	margin-bottom:26px;
 	width:440px;
 	height:300px;
 	background:rgba(3,18,70,0.5);
@@ -1266,4 +1266,13 @@ body::-webkit-scrollbar-track { /*滚动条里面轨道*/
     }
 .layui-layer-ico {
     background: url(../../image/tanchuan_ic_clsoe.png) no-repeat !important;
+}
+
+/*20190613 wjp 视频监控*/
+.video_bg{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
