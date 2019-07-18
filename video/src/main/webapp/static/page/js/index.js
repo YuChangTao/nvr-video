@@ -15,13 +15,14 @@ $(document).ready(function(){
     countScale();
     //页面等比例铺满屏幕方法结束
     login();
-    getConfig();
+    // getConfig();
     getChannel();
 })
 
 
-var baseUrl = "http://demo.easynvr.com:10800";
+// var baseUrl = "http://demo.easynvr.com:10800";
 // var baseUrl = "http://192.168.1.3:10800";
+var baseUrl = "http://localhost:10800";
 var data = [];
 //通道id
 var channelIdArr=[];

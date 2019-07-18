@@ -25,7 +25,7 @@
     <div class="">
         <h1 class="title_text">视频监控</h1>
         <div class="model_box violation_body_box" style="height:900px;">
-            <div class="from_box fn-mb20">
+            <%--<div class="from_box fn-mb20">
                 <form class="layui-form" action="" lay-filter="example">
                     <div class="layui-form-item customize_from">
                         <div class="layui-inline">
@@ -38,7 +38,7 @@
                         <button type="button" class="btn_inquiry fn-mr20 fn-ml20" id="select-video">查询</button>
                     </div>
                 </form>
-            </div>
+            </div>--%>
             <div class="left_top"></div>
             <div class="right_top"></div>
             <div class="left_bottom"></div>
