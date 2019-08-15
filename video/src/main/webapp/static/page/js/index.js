@@ -14,7 +14,7 @@ $(document).ready(function(){
     })
     countScale();
     //页面等比例铺满屏幕方法结束
-    login();
+    // login();
     getConfig();
 
 })
