@@ -39,17 +39,16 @@
             <artifactId>jstl</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc4</artifactId>
+            <version>4.0</version>
+        </dependency>
+        <dependency>
             <!--由于Spring boot使用的内嵌的tomcat，而内嵌的tamcat是不支持jsp页面的，所有需要导入额外的包才能解决。-->
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <!--<scope>provided</scope>-->
         </dependency>
-        <!--netty支持-->
-        <!-- <dependency>
-             <groupId>io.netty</groupId>
-             <artifactId>netty-all</artifactId>
-             <version>4.1.15.Final</version>
-         </dependency>-->
         <!--导入配置文件处理器，配置文件进行绑定就会有提示-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

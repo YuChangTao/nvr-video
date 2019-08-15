@@ -15,14 +15,17 @@ $(document).ready(function(){
     countScale();
     //页面等比例铺满屏幕方法结束
     login();
-    // getConfig();
-    getChannel();
+    getConfig();
+
 })
 
 
 // var baseUrl = "http://demo.easynvr.com:10800";
+//裕华
 // var baseUrl = "http://192.168.1.3:10800";
-var baseUrl = "http://localhost:10800";
+//新兴
+var baseUrl = "http://192.168.1.2:10800";
+// var baseUrl = "http://localhost:10800";
 var data = [];
 //通道id
 var channelIdArr=[];
@@ -50,10 +53,12 @@ function login() {
 }
 
 function getConfig() {
-    var getUrl = '/nvr/config/classify';
-    $.get(getUrl, {}, function (res) {
+    // var getUrl = '/nvr/config/classify';
+    var getUrl = '/nvr/video/url';
+    $.get(getUrl, {customerId:1}, function (res) {
         if (res) {
-            console.log(res);
+            baseUrl=res;
+            /*console.log(res);
             config = res;
             var options = '<option value="-1">全部</option>';
             for (var i in res) {
@@ -68,7 +73,8 @@ function getConfig() {
                 } else {
                     getChannelByType(v);
                 }
-            })
+            })*/
+            getChannel();
         }
     })
 }
@@ -159,6 +165,8 @@ function getChannelStream(index) {
     $.get(getUrl, {"channel": channelIdArr[index],"protocol":"FLV"}, function (res) {
         if (res.EasyDarwin.Header.ErrorNum == 200) {
             rtmpUrl = res.EasyDarwin.Body.URL;
+        } else {
+            rtmpUrl = "";
         }
     });
 }
