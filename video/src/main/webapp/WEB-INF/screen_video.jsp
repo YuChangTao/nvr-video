@@ -9,7 +9,11 @@
          pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html>
-
+<style>
+    html,body{
+        height:100%;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <title>视频监控</title>
