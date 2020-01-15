@@ -21,7 +21,11 @@
     <link rel="stylesheet" type="text/css" href="../static/page/css/base.css"/>
     <link rel="stylesheet" type="text/css" href="../static/page/css/common.css"/>
     <link href="../static/video/video-js.min.css" rel="stylesheet">
-
+    <!--引入播放器样式-->
+    <link href="http://vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet">
+    <!--引入播放器js-->
+    <script src="http://vjs.zencdn.net/5.19/video.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/videojs-flash@2/dist/videojs-flash.min.js"></script>
 </head>
 
 <body>
@@ -86,7 +90,7 @@
 <script src="../static/layui/layui.js" type="text/javascript"></script>
 <%--<script type="text/javascript" src="../static/video/video.min.js"></script>--%>
 <%--<script type="text/javascript" src="../static/video/videojs-flash.min.js"></script>--%>
-<script type="text/javascript" src="../static/video/easy-player-element.min.js"></script>
+<%--<script type="text/javascript" src="../static/video/easy-player-element.min.js"></script>--%>
 <script src="../static/page/js/index.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
     layui.use(['form', 'layedit', 'laydate'], function() {

@@ -264,3 +264,6 @@ video/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/
 video/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
 video/target/surefire-reports/com.nvr.video.VideoApplicationTests.txt
 video/target/surefire-reports/TEST-com.nvr.video.VideoApplicationTests.xml
+.idea/libraries/Maven__com_microsoft_sqlserver_sqljdbc4_4_0.xml
+video/src/main/webapp/static/page/css/common.css
+video/target/classes/com/nvr/video/sql/SqlConnection.class
