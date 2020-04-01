@@ -131,7 +131,7 @@ function getChannel() {
 //      var list = res.EasyDarwin.Body.Channels;
 //      data = list;
 //      createView(list);
-       
+
     $.get(getUrl, {}, function (res) {
         if (res.EasyDarwin.Header.ErrorNum == 200) {
             var list = res.EasyDarwin.Body.Channels;
@@ -242,15 +242,16 @@ function initLiEvent(val) {
             channelIdArr[index] = channel.Channel;
             getChannelStream(index);
             $.ajaxSettings.async = true;
+            var videoStr = "";
 			if(customerId == 6){
 				//普阳
-				var videoStr = '<video autoplay="autoplay" id="'+myPlayer+'" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto"'
+                videoStr = '<video autoplay="autoplay" id="'+myPlayer+'" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto"'
 							    +'  poster="" width="1000" height="500" data-setup="{}">'
 							    +'<source src="'+rtmpUrl+'"  type="rtmp/flv"/>'
 							+'</video>'
 			}else{
-				var videoStr = '<easy-player id="my-video" live="true" aspect="187:100" show-custom-button="true" video-url="'+rtmpUrl+'"></easy-player>'
-	            
+			    videoStr = '<easy-player id="my-video" live="true" aspect="187:100" show-custom-button="true" video-url="'+baseUrl+rtmpUrl+'"></easy-player>'
+
 			}
             $("#videoBox").html(videoStr);
             let player = videojs(myPlayer); //my-player为页面video元素的id
