@@ -40,13 +40,15 @@ var config;
 var clickTimeSingle,clickTimeDouble;
 //
 var customerId=GetQueryString("customerId");
-var flvOrRtmp=GetQueryString("customerId") == 6?"RTMP":"FLV";
-if(customerId != 6){
-	var script = document.createElement("script");
-	script.type = "text/javascript";
-	script.src = "../static/video/easy-player-element.min.js";
-	document.getElementsByTagName("head")[0].appendChild(script);
-}
+// var flvOrRtmp=GetQueryString("customerId") == 6?"RTMP":"FLV";
+
+// if(customerId != 6){
+// 	var script = document.createElement("script");
+// 	script.type = "text/javascript";
+// 	script.src = "../static/video/easy-player-element.min.js";
+// 	document.getElementsByTagName("head")[0].appendChild(script);
+// }
+var flvOrRtmp="RTMP";
 //li索引
 //var index;
 // videojs.options.flash.swf = '../static/video/video-js.swf';
@@ -243,16 +245,16 @@ function initLiEvent(val) {
             getChannelStream(index);
             $.ajaxSettings.async = true;
             var videoStr = "";
-			if(customerId == 6){
+			// if(customerId == 6){
 				//普阳
                 videoStr = '<video autoplay="autoplay" id="'+myPlayer+'" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto"'
 							    +'  poster="" width="1000" height="500" data-setup="{}">'
 							    +'<source src="'+rtmpUrl+'"  type="rtmp/flv"/>'
 							+'</video>'
-			}else{
-			    videoStr = '<easy-player id="my-video" live="true" aspect="187:100" show-custom-button="true" video-url="'+baseUrl+rtmpUrl+'"></easy-player>'
-
-			}
+			// }else{
+			//     videoStr = '<easy-player id="my-video" live="true" aspect="187:100" show-custom-button="true" video-url="'+baseUrl+rtmpUrl+'"></easy-player>'
+            //
+			// }
             $("#videoBox").html(videoStr);
             let player = videojs(myPlayer); //my-player为页面video元素的id
     			player.play();
@@ -306,15 +308,15 @@ function initLiEvent(val) {
                 getChannelStream(index);
                 $.ajaxSettings.async = true;
                 $(_this).find("img,.bg_play_img").hide();
-                if(customerId == 6){
+                // if(customerId == 6){
 					//普阳
 					var videoStr = '<video autoplay="autoplay" id="'+myPlayer+'" class="videoS video-js vjs-default-skin vjs-big-play-centered" controls preload="auto"'
 								    +'  poster="" width="400" height="299" data-setup="{}">'
 								    +'<source src="'+rtmpUrl+'"  type="rtmp/flv"/>'
 								+'</video><div class="video_bg"></div>';
-				}else{
-					var videoStr = '<easy-player id="'+myPlayer+'" class="videoS" live="true" aspect="150:100" show-custom-button="true" video-url="'+baseUrl+rtmpUrl+'"></easy-player><div class="video_bg"></div>'
-				}
+				// }else{
+				// 	var videoStr = '<easy-player id="'+myPlayer+'" class="videoS" live="true" aspect="150:100" show-custom-button="true" video-url="'+baseUrl+rtmpUrl+'"></easy-player><div class="video_bg"></div>'
+				// }
 				$(_this).find("img,.bg_play_img").hide();
                 $(_this).find(".img_box_flow").append(videoStr);
                 let player = videojs(myPlayer); //my-player为页面video元素的id
