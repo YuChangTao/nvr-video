@@ -13,6 +13,9 @@
     html,body{
         height:100%;
     }
+    .videoS{
+        width:100% !important;
+    }
 </style>
 <head>
     <meta charset="UTF-8">

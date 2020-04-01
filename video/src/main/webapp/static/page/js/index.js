@@ -313,7 +313,7 @@ function initLiEvent(val) {
 								    +'<source src="'+rtmpUrl+'"  type="rtmp/flv"/>'
 								+'</video><div class="video_bg"></div>';
 				}else{
-					var videoStr = '<easy-player id="my-video" class="videoS" live="true" aspect="150:100" show-custom-button="true" video-url="'+rtmpUrl+'"></easy-player><div class="video_bg"></div>'
+					var videoStr = '<easy-player id="'+myPlayer+'" class="videoS" live="true" aspect="150:100" show-custom-button="true" video-url="'+baseUrl+rtmpUrl+'"></easy-player><div class="video_bg"></div>'
 				}
 				$(_this).find("img,.bg_play_img").hide();
                 $(_this).find(".img_box_flow").append(videoStr);
